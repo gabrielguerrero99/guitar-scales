@@ -5,3 +5,8 @@ export type PitchClass = number;
 export function normalize(n: number): PitchClass {
     return ((n % 12) + 12) % 12;
 }
+
+// Shifts a note up or down by some number of semitones
+export function transpose(pc: PitchClass, semitones: number): PitchClass {
+    return normalize(pc + semitones);
+}
