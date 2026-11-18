@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normalize, transpose } from "./notes";
+import { normalize, transpose, interval } from "./notes";
 
 // "normalize" function tests
 describe("normalize", () => {
@@ -47,5 +47,25 @@ describe("transpose", () => {
 
     it("returns the same note after whole octaves", () => {
         expect(transpose(4, 24)).toBe(4);
+    });
+});
+
+// "interval" function tests
+describe("interval", () => {
+    it("counts semitones up from one note to another", () => {
+        expect(interval(0, 7)).toBe(7);
+    });
+
+    it("wraps past B when the second note is lower", () => {
+        expect(interval(9, 0)).toBe(3);
+    });
+
+    it("returns 0 for the same note", () => {
+        expect(interval(4, 4)).toBe(0);
+    });
+
+    it("gives different results when the arguments are swapped", () => {
+        expect(interval(0, 9)).toBe(9);
+        expect(interval(9, 0)).toBe(3);
     });
 });

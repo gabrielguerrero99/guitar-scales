@@ -10,3 +10,8 @@ export function normalize(n: number): PitchClass {
 export function transpose(pc: PitchClass, semitones: number): PitchClass {
     return normalize(pc + semitones);
 }
+
+// Semitones going up from one note to another (0-11)
+export function interval(from: PitchClass, to: PitchClass): number {
+    return normalize(to - from);
+}
